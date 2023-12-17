@@ -1,8 +1,8 @@
-@page "/categories/create"
+@page "/products/create"
 @rendermode InteractiveServer
 @inject ApplicationDbContext Context
 @inject NavigationManager Navigation
-<h1> Nova Categoria</h1>
+<h1> Novo Produto</h1>
 
 <EditForm Model="@Model" OnValidSubmit="OnValidSubmitAsync">
     <DataAnnotationsValidator />
@@ -10,16 +10,23 @@
     <ValidationSummary />
 
     <div class="mb-3">
-        <label class="form-label"> Nome da Categoria</label>
+        <label class="form-label"> Nome do Produto</label>
         <InputText @bind-Value="Model.Title" class="form-control" />
         <ValidationMessage For="@(() => Model.Title)" />
     </div>
+
+    <div class="mb-3">
+        <label class="form-label"> Preço</label>
+        <InputNumber @bind-Value="Model.Price" class="form-control" />
+        <ValidationMessage For="@(() => Model.Price)" />
+    </div>
+
     <button type="submit" class="btn btn-primary"> Criar </button>
     <a href="/categories"> Cancelar</a>
 </EditForm>
 
 @code {
-    public Category Model { get; set; } = new();
+    public Product Model { get; set; } = new();
 
         protected override void OnInitialized()
         {
@@ -28,8 +35,8 @@
 
         public async Task OnValidSubmitAsync()
         {
-            await Context.Categories.AddAsync(Model);
+            await Context.Products.AddAsync(Model);
             await Context.SaveChangesAsync();
-            Navigation.NavigateTo("categories");
+            Navigation.NavigateTo("products");
         }
 }
