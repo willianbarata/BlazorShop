@@ -1,6 +1,7 @@
 @page "/categories/create"
 @rendermode InteractiveServer
 @inject ApplicationDbContext Context
+@inject NavigationManager Navigation
 <h1> Nova Categoria</h1>
 
 <EditForm Model="@Model" OnValidSubmit="OnValidSubmitAsync">
@@ -29,5 +30,6 @@
         {
             await Context.Categories.AddAsync(Model);
             await Context.SaveChangesAsync();
+            Navigation.NavigateTo("categories");
         }
 }
