@@ -1,3 +1,16 @@
 @page "/categories/create"
 
 <h1> Nova Categoria</h1>
+
+<EditForm Model="@Model">
+    <InputText @bind-Value="Model.Title" />
+</EditForm>
+
+@code {
+    public Models.Category Model { get; set; } = new();
+
+        protected override void OnInitialized()
+        {
+            Model.Title = "Minha incrível Categoria";
+        }
+}
