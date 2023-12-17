@@ -8,8 +8,8 @@ namespace BlazorShop.Models
 {
     public class Product
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
+
         [Required(ErrorMessage = "Informe o título")]
         [MinLength(3, ErrorMessage = "A categoria deve ter pelo menos 3 caracteres")]
         [MaxLength(120, ErrorMessage = "A categoria deve ter pelo menos 3 caracteres")]
@@ -19,7 +19,7 @@ namespace BlazorShop.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        public int CategoriaId { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
     }
 }

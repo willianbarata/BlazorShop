@@ -21,16 +21,34 @@
         <ValidationMessage For="@(() => Model.Price)" />
     </div>
 
+     <div class="mb-3">
+        <label class="form-label"> Categoria</label>
+        <InputSelect @bind-Value="Model.CategoryId" class="form-control">
+            @foreach(var category in Categories)
+            {
+                <option value="@category.Id">
+                    @category.Title
+                </option>
+            }
+        </InputSelect>
+
+    </div>
+
     <button type="submit" class="btn btn-primary"> Criar </button>
     <a href="/categories"> Cancelar</a>
 </EditForm>
 
 @code {
+    public IEnumerable<Category> Categories { get; set; } = Enumerable.Empty<Category>();
     public Product Model { get; set; } = new();
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
-            Model.Title = "";
+            Categories = await Context
+                .Categories
+                .AsNoTracking()
+                .OrderBy(x => x.Title)
+                .ToListAsync();
         }
 
         public async Task OnValidSubmitAsync()
