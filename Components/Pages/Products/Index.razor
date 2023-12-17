@@ -2,7 +2,6 @@
 @inject ApplicationDbContext Context
 @rendermode InteractiveServer
 
-
 <h1> Produtos </h1>
 <a href="/products/create" class="btn btn-primary"> Novo Produto</a>
 <br>
@@ -38,7 +37,7 @@ else
                 </td>
 
                 <td>
-                    @product.Price.ToString("C")
+                    @product.Price.ToString("C", new CultureInfo("pt-BR"))
                 </td>
                 <td> 
                     <a href="/products/edit/@product.Id" class="btn btn-primary"> Editar </a> &nbsp; &nbsp;
