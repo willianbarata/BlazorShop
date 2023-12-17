@@ -1,5 +1,6 @@
 @page "/categories/create"
 @rendermode InteractiveServer
+@inject ApplicationDbContext Context
 <h1> Nova Categoria</h1>
 
 <EditForm Model="@Model" OnValidSubmit="OnValidSubmitAsync">
@@ -17,15 +18,16 @@
 </EditForm>
 
 @code {
-    public Models.Category Model { get; set; } = new();
+    public Category Model { get; set; } = new();
 
         protected override void OnInitialized()
         {
             Model.Title = "Minha incrível Categoria";
         }
 
-        public Task OnValidSubmitAsync()
+        public async Task OnValidSubmitAsync()
         {
-
+            await Context.Categories.AddAsync(Model);
+            await Context.SaveChangesAsync();
         }
 }
