@@ -26,7 +26,9 @@ else
            {
                  <tr>
                 <td>@category.Id</td>
-                <td>@category.Title</td>
+                <td> 
+                    <a href="/categories/@category.Id"> @category.Title</a>
+                </td>
                 <td> 
                     <a href="/categories/edit/@category.Id" class="btn btn-primary"> Editar </a> &nbsp; &nbsp;
                     <a href="/categories/edit/@category.Id" class="btn btn-danger"> Excluir </a>
